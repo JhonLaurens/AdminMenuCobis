@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas Minimalista</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        #task-input {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        #add-task {
+            width: 100%;
+            padding: 0.5rem;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #add-task:hover {
+            background-color: #2980b9;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        .delete-task {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .delete-task:hover {
+            background-color: #c0392b;
+        }
+        .task-text {
+            flex-grow: 1;
+            margin-right: 1rem;
+        }
+        .completed {
+            text-decoration: line-through;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mis Tareas</h1>
+        <input type="text" id="task-input" placeholder="Agregar nueva tarea...">
+        <button id="add-task">Agregar</button>
+        <ul id="task-list"></ul>
+    </div>
+
+    <script>
+        const taskInput = document.getElementById('task-input');
+        const addTaskButton = document.getElementById('add-task');
+        const taskList = document.getElementById('task-list');
+
+        addTaskButton.addEventListener('click', addTask);
+        taskInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addTask();
+            }
+        });
+
+        function addTask() {
+            const taskText = taskInput.value.trim();
+            if (taskText !== '') {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <span class="task-text">${taskText}</span>
+                    <button class="delete-task">Eliminar</button>
+                `;
+                
+                li.querySelector('.task-text').addEventListener('click', toggleComplete);
+                li.querySelector('.delete-task').addEventListener('click', deleteTask);
+                
+                taskList.appendChild(li);
+                taskInput.value = '';
+                taskInput.focus();
+            }
+        }
+
+        function toggleComplete(e) {
+            e.target.classList.toggle('completed');
+        }
+
+        function deleteTask(e) {
+            e.target.parentElement.remove();
+        }
+    </script>
+</body>
+</html>

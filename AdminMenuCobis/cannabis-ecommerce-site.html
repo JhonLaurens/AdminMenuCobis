@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CannaShop - Productos Cannábicos de Calidad</title>
+    <style>
+        /* Estilos CSS */
+        :root {
+            --color-primary: #4a8e3b;
+            --color-secondary: #8c5e2a;
+            --color-background: #f4f7f1;
+            --color-text: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-background);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-primary);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--color-text);
+            padding: 0.5rem 1rem;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--color-primary);
+            color: #fff;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            min-width: 150px;
+        }
+
+        nav ul li:hover .submenu {
+            display: block;
+        }
+
+        .cart-icon, .search-icon, .user-icon {
+            font-size: 1.2rem;
+            color: var(--color-primary);
+            margin-left: 1rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            background-image: url('/api/placeholder/1200/400');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            background-color: rgba(255,255,255,0.8);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--color-primary);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: var(--color-secondary);
+        }
+
+        /* Product Section Styles */
+        .product-section {
+            padding: 3rem 0;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-info {
+            padding: 1rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-weight: bold;
+            color: var(--color-primary);
+        }
+
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 0.5rem;
+            background-color: var(--color-primary);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--color-secondary);
+        }
+
+        /* About Section Styles */
+        .about-section {
+            background-color: #fff;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .about-section h2 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        /* FAQ Section Styles */
+        .faq-section {
+            padding: 3rem 0;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+
+        .faq-question {
+            background-color: #fff;
+            padding: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            border-radius: 0 0 5px 5px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--color-primary);
+            color: #fff;
+            padding: 2rem 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            flex: 1;
+            margin-right: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .submenu {
+                position: static;
+                display: none;
+            }
+
+            nav ul li:hover .submenu {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">CannaShop</div>
+            <nav>
+                <ul>
+                    <li><a href="#">Productos</a>
+                        <ul class="submenu">
+                            <li><a href="#">Flores</a></li>
+                            <li><a href="#">Aceites</a></li>
+                            <li><a href="#">Comestibles</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Información</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </nav>
+            <div>
+                <span class="search-icon">🔍</span>
+                <span class="cart-icon">🛒</span>
+                <span class="user-icon">👤</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <h1>Descubre el Poder Natural del Cannabis</h1>
+                <p>Productos de alta calidad para tu bienestar</p>
+                <a href="#" class="cta-button">Explora Nuestra Tienda</a>
+            </div>
+        </section>
+
+        <section class="product-section">
+            <div class="container">
+                <h2>Productos Destacados</h2>
+                <div class="product-grid">
+                    <!-- Producto 1 -->
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('/api/placeholder/250/200')"></div>
+                        <div class="product-info">
+                            <h3 class="product-title">Aceite CBD Premium</h3>
+                            <p class="product-price">$49.99</p>
+                            <button class="add-to-cart">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                    <!-- Producto 2 -->
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('/api/placeholder/250/200')"></div>
+                        <div class="product-info">
+                            <h3 class="product-title">Flores Orgánicas</h3>
+                            <p class="product-price">$29.99</p>
+                            <button class="add-to-cart">Añadir al Carrito</button>
+                        </div>
+                    </div>
+                    <!-- Agregar más productos aquí -->
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <div class="container">
+                <h2>Sobre Nosotros</h2>
+                <p>En CannaShop, nos dedicamos a proporcionar productos cannábicos de la más alta calidad. Nuestro compromiso es ofrecer soluciones naturales para el bienestar de nuestros clientes.</p>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="container">
+                <h2>Preguntas Frecuentes</h2>
+                <div class="faq-item">
+                    <div class="faq-question">¿Cómo se usa el aceite CBD?</div>
+                    <div class="faq-answer">El aceite CBD se puede tomar por vía sublingual, colocando unas gotas debajo de la lengua durante 30-60 segundos antes de tragar.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Son legales sus productos?</div>
+                    <div class="faq-answer">Sí, todos nuestros productos cumplen con las regulaciones locales y contienen menos del 0.3% de THC.</div>
+                </div>
+                <!-- Agregar más preguntas frecuentes aquí -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Email: info@cannashop.com</p>
+                <p>Teléfono: (123) 456-7890</p>
+            </div>
+            <div class="footer-section">
+                <h3>Síguenos</h3>
+                <div class="social-icons">
+                    <a href="#">📘</a>
+                    <a href="#">📷</a>
+                    <a href="#">🐦</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <p><a href="#">Términos y Condiciones</a></p>
+                <p><a href="#">Política de Privacidad</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript para la funcionalidad
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menú desplegable
+            const menuItems = document.querySelectorAll('nav > ul > li');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                });
+            });
+
+            // Carrito de compras
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            let cartCount = 0;
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    cartCount++;
+                    document.querySelector('.cart-icon').textContent = `🛒 ${cartCount}`;
+                });
+            });
+
+            // FAQ Accordion
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const answer = this.nextElementSibling;
+                    if (answer.style.display === 'block') {
+                        answer.style.display = 'none';
+                    } else {
+                        answer.style.display = 'block';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

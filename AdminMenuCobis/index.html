@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lista de Permisos</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left; /* Modified */
+        word-wrap: break-word;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <button onclick="exportarTablaAXLSX()">Exportar a Excel</button>
+    <table>
+      <thead>
+        <tr>
+          <th>Descripción</th>
+          <th>Asesor Comercial</th>
+          <th>Cajero</th>
+          <th>Subgerente</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Repetir esta fila para cada 'Depósitos a la Vista'	'Operaciones'	'*Búsqueda de Cuentas'	'*Apertura de Cuentas'	'*Procesos'	'**Cheques Extranjeros'	'***Búsqueda de Cheques Extranjeros'	'**Cheques de Cámara'	'***Efectivización de Cheques Locales'	'***Devolución de Cheques Locales y Propios'	'***Postergación Efectivización Cheques Locales'	'***Aprobación de Cámara'	'***Aprobación de Cámara de Otros Oficiales'	'***Verificacion por forma y firma'	'Administración'	'*Relación de Perfiles Contables'	'*Parametrización Contable'	'*Mantenimiento de Acción de Notas de Débito'	'*Mantenimiento de Acción de Notas de Crédito'	'*Retenciones de Cheques Extranjeros'	'*Bancos'	'*Mensaje Documentos de Cuenta'	'*Productos Bancarios'	'*Retención de Cheques Locales'	'*Concepto Exención GMF'	'*Impuestos por transacción'	'*Mantenimiento de Cuentas Concentradoras'	'*Concentración de fondos por Excepcion'	'*Atributos de Transacciones'	'*Mantenimiento de Comisiones'	'*Mantenimiento de Conceptos de Embargo'	'Consultas'	'*Histórico Transacciones Monetarias'	'*Histórico de Transacciones de Servicio'	'*Consulta de Cheques Extranjeros por Oficina' -->
+
+        <!-- completar chec list para cada rol con todas las opciones de menu-->
+        <tr>
+          <td>Depósitos a la Vista</td>
+          <td>
+            <input
+              type="checkbox"
+              id="depositos_vista_asesor"
+              name="depositos_vista_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="depositos_vista_cajero"
+              name="depositos_vista_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="depositos_vista_subgerente"
+              name="depositos_vista_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td>Operaciones</td>
+          <td>
+            <input
+              type="checkbox"
+              id="operaciones_asesor"
+              name="operaciones_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="operaciones_cajero"
+              name="operaciones_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="operaciones_subgerente"
+              name="operaciones_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Búsqueda de Cuentas</td>
+          <td>
+            <input
+              type="checkbox"
+              id="busqueda_cuentas_asesor"
+              name="busqueda_cuentas_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="busqueda_cuentas_cajero"
+              name="busqueda_cuentas_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="busqueda_cuentas_subgerente"
+              name="busqueda_cuentas_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Apertura de Cuentas</td>
+          <td>
+            <input
+              type="checkbox"
+              id="apertura_cuentas_asesor"
+              name="apertura_cuentas_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="apertura_cuentas_cajero"
+              name="apertura_cuentas_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="apertura_cuentas_subgerente"
+              name="apertura_cuentas_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Procesos</td>
+          <td>
+            <input
+              type="checkbox"
+              id="procesos_asesor"
+              name="procesos_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="procesos_cajero"
+              name="procesos_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="procesos_subgerente"
+              name="procesos_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>**Cheques Extranjeros</td>
+          <td>
+            <input
+              type="checkbox"
+              id="cheques_extranjeros_asesor"
+              name="cheques_extranjeros_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="cheques_extranjeros_cajero"
+              name="cheques_extranjeros_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="cheques_extranjeros_subgerente"
+              name="cheques_extranjeros_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>***Búsqueda de Cheques Extranjeros</td>
+          <td>
+            <input
+              type="checkbox"
+              id="busqueda_cheques_extranjeros_asesor"
+              name="busqueda_cheques_extranjeros_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="busqueda_cheques_extranjeros_cajero"
+              name="busqueda_cheques_extranjeros_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="busqueda_cheques_extranjeros_subgerente"
+              name="busqueda_cheques_extranjeros_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>**Cheques de Cámara</td>
+          <td>
+            <input
+              type="checkbox"
+              id="cheques_camara_asesor"
+              name="cheques_camara_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="cheques_camara_cajero"
+              name="cheques_camara_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="cheques_camara_subgerente"
+              name="cheques_camara_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>***Efectivización de Cheques Locales</td>
+          <td>
+            <input
+              type="checkbox"
+              id="efectivizacion_cheques_locales_asesor"
+              name="efectivizacion_cheques_locales_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="efectivizacion_cheques_locales_cajero"
+              name="efectivizacion_cheques_locales_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="efectivizacion_cheques_locales_subgerente"
+              name="efectivizacion_cheques_locales_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>***Devolución de Cheques Locales y Propios</td>
+          <td>
+            <input
+              type="checkbox"
+              id="devolucion_cheques_locales_propios_asesor"
+              name="devolucion_cheques_locales_propios_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="devolucion_cheques_locales_propios_cajero"
+              name="devolucion_cheques_locales_propios_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="devolucion_cheques_locales_propios_subgerente"
+              name="devolucion_cheques_locales_propios_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>***Postergación Efectivización Cheques Locales</td>
+          <td>
+            <input
+              type="checkbox"
+              id="postergacion_efectivizacion_cheques_locales_asesor"
+              name="postergacion_efectivizacion_cheques_locales_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="postergacion_efectivizacion_cheques_locales_cajero"
+              name="postergacion_efectivizacion_cheques_locales_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="postergacion_efectivizacion_cheques_locales_subgerente"
+              name="postergacion_efectivizacion_cheques_locales_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>***Aprobación de Cámara</td>
+          <td>
+            <input
+              type="checkbox"
+              id="aprobacion_camara_asesor"
+              name="aprobacion_camara_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="aprobacion_camara_cajero"
+              name="aprobacion_camara_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="aprobacion_camara_subgerente"
+              name="aprobacion_camara_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>***Aprobación de Cámara de Otros Oficiales</td>
+          <td>
+            <input
+              type="checkbox"
+              id="aprobacion_camara_otros_oficiales_asesor"
+              name="aprobacion_camara_otros_oficiales_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="aprobacion_camara_otros_oficiales_cajero"
+              name="aprobacion_camara_otros_oficiales_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="aprobacion_camara_otros_oficiales_subgerente"
+              name="aprobacion_camara_otros_oficiales_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>***Verificacion por forma y firma</td>
+          <td>
+            <input
+              type="checkbox"
+              id="verificacion_forma_firma_asesor"
+              name="verificacion_forma_firma_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="verificacion_forma_firma_cajero"
+              name="verificacion_forma_firma_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="verificacion_forma_firma_subgerente"
+              name="verificacion_forma_firma_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Administración</td>
+          <td>
+            <input
+              type="checkbox"
+              id="administracion_asesor"
+              name="administracion_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="administracion_cajero"
+              name="administracion_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="administracion_subgerente"
+              name="administracion_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Relación de Perfiles Contables</td>
+          <td>
+            <input
+              type="checkbox"
+              id="relacion_perfiles_contables_asesor"
+              name="relacion_perfiles_contables_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="relacion_perfiles_contables_cajero"
+              name="relacion_perfiles_contables_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="relacion_perfiles_contables_subgerente"
+              name="relacion_perfiles_contables_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Parametrización Contable</td>
+          <td>
+            <input
+              type="checkbox"
+              id="parametrizacion_contable_asesor"
+              name="parametrizacion_contable_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="parametrizacion_contable_cajero"
+              name="parametrizacion_contable_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="parametrizacion_contable_subgerente"
+              name="parametrizacion_contable_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Mantenimiento de Acción de Notas de Débito</td>
+          <td>
+            <input
+              type="checkbox"
+              id="mantenimiento_accion_notas_debito_asesor"
+              name="mantenimiento_accion_notas_debito_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="mantenimiento_accion_notas_debito_cajero"
+              name="mantenimiento_accion_notas_debito_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="mantenimiento_accion_notas_debito_subgerente"
+              name="mantenimiento_accion_notas_debito_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Mantenimiento de Acción de Notas de Crédito</td>
+          <td>
+            <input
+              type="checkbox"
+              id="mantenimiento_accion_notas_credito_asesor"
+              name="mantenimiento_accion_notas_credito_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="mantenimiento_accion_notas_credito_cajero"
+              name="mantenimiento_accion_notas_credito_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="mantenimiento_accion_notas_credito_subgerente"
+              name="mantenimiento_accion_notas_credito_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Retenciones de Cheques Extranjeros</td>
+          <td>
+            <input
+              type="checkbox"
+              id="retenciones_cheques_extranjeros_asesor"
+              name="retenciones_cheques_extranjeros_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="retenciones_cheques_extranjeros_cajero"
+              name="retenciones_cheques_extranjeros_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="retenciones_cheques_extranjeros_subgerente"
+              name="retenciones_cheques_extranjeros_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Bancos</td>
+          <td>
+            <input
+              type="checkbox"
+              id="bancos_asesor"
+              name="bancos_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="bancos_cajero"
+              name="bancos_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="bancos_subgerente"
+              name="bancos_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Mensaje Documentos de Cuenta</td>
+          <td>
+            <input
+              type="checkbox"
+              id="mensaje_documentos_cuenta_asesor"
+              name="mensaje_documentos_cuenta_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="mensaje_documentos_cuenta_cajero"
+              name="mensaje_documentos_cuenta_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="mensaje_documentos_cuenta_subgerente"
+              name="mensaje_documentos_cuenta_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Productos Bancarios</td>
+          <td>
+            <input
+              type="checkbox"
+              id="productos_bancarios_asesor"
+              name="productos_bancarios_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="productos_bancarios_cajero"
+              name="productos_bancarios_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="productos_bancarios_subgerente"
+              name="productos_bancarios_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Retención de Cheques Locales</td>
+          <td>
+            <input
+              type="checkbox"
+              id="retencion_cheques_locales_asesor"
+              name="retencion_cheques_locales_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="retencion_cheques_locales_cajero"
+              name="retencion_cheques_locales_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="retencion_cheques_locales_subgerente"
+              name="retencion_cheques_locales_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Concepto Exención GMF</td>
+          <td>
+            <input
+              type="checkbox"
+              id="concepto_exencion_gmf_asesor"
+              name="concepto_exencion_gmf_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="concepto_exencion_gmf_cajero"
+              name="concepto_exencion_gmf_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="concepto_exencion_gmf_subgerente"
+              name="concepto_exencion_gmf_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Impuestos por transacción</td>
+          <td>
+            <input
+              type="checkbox"
+              id="impuestos_transaccion_asesor"
+              name="impuestos_transaccion_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="impuestos_transaccion_cajero"
+              name="impuestos_transaccion_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="impuestos_transaccion_subgerente"
+              name="impuestos_transaccion_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Mantenimiento de Cuentas Concentradoras</td>
+          <td>
+            <input
+              type="checkbox"
+              id="mantenimiento_cuentas_concentradoras_asesor"
+              name="mantenimiento_cuentas_concentradoras_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="mantenimiento_cuentas_concentradoras_cajero"
+              name="mantenimiento_cuentas_concentradoras_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="mantenimiento_cuentas_concentradoras_subgerente"
+              name="mantenimiento_cuentas_concentradoras_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Concentración de fondos por Excepcion</td>
+          <td>
+            <input
+              type="checkbox"
+              id="concentracion_fondos_excepcion_asesor"
+              name="concentracion_fondos_excepcion_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="concentracion_fondos_excepcion_cajero"
+              name="concentracion_fondos_excepcion_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="concentracion_fondos_excepcion_subgerente"
+              name="concentracion_fondos_excepcion_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Atributos de Transacciones</td>
+          <td>
+            <input
+              type="checkbox"
+              id="atributos_transacciones_asesor"
+              name="atributos_transacciones_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="atributos_transacciones_cajero"
+              name="atributos_transacciones_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="atributos_transacciones_subgerente"
+              name="atributos_transacciones_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Mantenimiento de Comisiones</td>
+          <td>
+            <input
+              type="checkbox"
+              id="mantenimiento_comisiones_asesor"
+              name="mantenimiento_comisiones_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="mantenimiento_comisiones_cajero"
+              name="mantenimiento_comisiones_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="mantenimiento_comisiones_subgerente"
+              name="mantenimiento_comisiones_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Mantenimiento de Conceptos de Embargo</td>
+          <td>
+            <input
+              type="checkbox"
+              id="mantenimiento_conceptos_embargo_asesor"
+              name="mantenimiento_conceptos_embargo_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="mantenimiento_conceptos_embargo_cajero"
+              name="mantenimiento_conceptos_embargo_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="mantenimiento_conceptos_embargo_subgerente"
+              name="mantenimiento_conceptos_embargo_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Consultas</td>
+          <td>
+            <input
+              type="checkbox"
+              id="consultas_asesor"
+              name="consultas_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="consultas_cajero"
+              name="consultas_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="consultas_subgerente"
+              name="consultas_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Histórico Transacciones Monetarias</td>
+          <td>
+            <input
+              type="checkbox"
+              id="historico_transacciones_monetarias_asesor"
+              name="historico_transacciones_monetarias_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="historico_transacciones_monetarias_cajero"
+              name="historico_transacciones_monetarias_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="historico_transacciones_monetarias_subgerente"
+              name="historico_transacciones_monetarias_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Histórico de Transacciones de Servicio</td>
+          <td>
+            <input
+              type="checkbox"
+              id="historico_transacciones_servicio_asesor"
+              name="historico_transacciones_servicio_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="historico_transacciones_servicio_cajero"
+              name="historico_transacciones_servicio_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="historico_transacciones_servicio_subgerente"
+              name="historico_transacciones_servicio_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>*Consulta de Cheques Extranjeros por Oficina</td>
+          <td>
+            <input
+              type="checkbox"
+              id="consulta_cheques_extranjeros_oficina_asesor"
+              name="consulta_cheques_extranjeros_oficina_asesor"
+              value="Asesor Comercial"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="consulta_cheques_extranjeros_oficina_cajero"
+              name="consulta_cheques_extranjeros_oficina_cajero"
+              value="Cajero"
+            />
+          </td>
+          <td>
+            <input
+              type="checkbox"
+              id="consulta_cheques_extranjeros_oficina_subgerente"
+              name="consulta_cheques_extranjeros_oficina_subgerente"
+              value="Subgerente"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <script>
+    function exportarTablaAXLSX() {
+        // Clonar la tabla para no alterar la original
+        let tabla = document.getElementsByTagName("table")[0].cloneNode(true);
+        
+        // Recorrer todas las celdas de la tabla clonada
+        for (let fila of tabla.rows) {
+            for (let celda of fila.cells) {
+                // Si la celda contiene un checkbox
+                if (celda.querySelector('input[type="checkbox"]')) {
+                    let checkbox = celda.querySelector('input[type="checkbox"]');
+                    // Reemplazar el contenido de la celda con 'X' o dejarlo vacío
+                    celda.textContent = checkbox.checked ? 'X' : '';
+                }
+            }
+        }
+    
+        // Convertir la tabla clonada a hoja de cálculo
+        let ws = XLSX.utils.table_to_sheet(tabla);
+        let wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "Hoja1");
+        XLSX.writeFile(wb, "ListaDePermisos.xlsx");
+    }
+
+      document.addEventListener("DOMContentLoaded", (event) => {
+        // Restaurar el estado de las casillas al cargar la página
+        document
+          .querySelectorAll('input[type="checkbox"]')
+          .forEach((checkbox) => {
+            const checked = localStorage.getItem(checkbox.name) === "true";
+            checkbox.checked = checked;
+
+            // Añadir evento para guardar el estado cuando cambie
+            checkbox.addEventListener("change", (event) => {
+              localStorage.setItem(checkbox.name, checkbox.checked);
+            });
+          });
+      });
+    </script>
+  </body>
+</html>

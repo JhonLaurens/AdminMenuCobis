@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jhon Dayron Jaramillo Laurens - Desarrollador de Software Full-Stack</title>
+    <style>
+        /* Estilos CSS */
+        :root {
+            --color-primary: #0077B5;
+            --color-secondary: #00A0DC;
+            --color-background: #f4f4f4;
+            --color-text: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-background);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-primary);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--color-text);
+            padding: 0.5rem 1rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--color-primary);
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            background-color: var(--color-primary);
+            color: #fff;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 2rem;
+            object-fit: cover;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #fff;
+            color: var(--color-primary);
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: var(--color-secondary);
+            color: #fff;
+        }
+
+        /* About Section Styles */
+        .about-section {
+            padding: 4rem 0;
+        }
+
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .about-text {
+            flex: 1;
+            margin-right: 2rem;
+        }
+
+        .skills {
+            flex: 1;
+        }
+
+        .skill-item {
+            background-color: #fff;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Portfolio Section Styles */
+        .portfolio-section {
+            background-color: #fff;
+            padding: 4rem 0;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            background-color: var(--color-background);
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .portfolio-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .portfolio-info {
+            padding: 1rem;
+        }
+
+        /* Resume Section Styles */
+        .resume-section {
+            padding: 4rem 0;
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 2rem;
+        }
+
+        .experience-item h3, .education-item h3 {
+            color: var(--color-primary);
+        }
+
+        /* Contact Section Styles */
+        .contact-section {
+            background-color: #fff;
+            padding: 4rem 0;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-group textarea {
+            height: 150px;
+        }
+
+        .submit-button {
+            background-color: var(--color-primary);
+            color: #fff;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: var(--color-secondary);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--color-primary);
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-text, .skills {
+                margin-right: 0;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">JJ</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#about">Sobre mí</a></li>
+                    <li><a href="#portfolio">Portafolio</a></li>
+                    <li><a href="#resume">Currículum</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container hero-content">
+                <img src="/api/placeholder/200/200" alt="Jhon Dayron Jaramillo Laurens" class="hero-image">
+                <h1>Jhon Dayron Jaramillo Laurens</h1>
+                <p>Desarrollador de Software Full-Stack</p>
+                <p>Especializado en crear aplicaciones eficientes y escalables con Python, Java y C#</p>
+                <a href="#contact" class="cta-button">Contáctame</a>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2>Sobre mí</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Soy un desarrollador de software full-stack con más de 5 años de experiencia en la creación de aplicaciones eficientes y escalables. Mi enfoque se centra en el desarrollo con Python, Java y C#, y estoy comprometido con la entrega de soluciones de alta calidad que impulsen el éxito de los proyectos.</p>
+                        <p>Mis valores incluyen compromiso, pasión, responsabilidad, puntualidad, creatividad, actitud positiva, proactividad, honestidad, integridad, respeto e innovación.</p>
+                    </div>
+                    <div class="skills">
+                        <h3>Habilidades técnicas</h3>
+                        <div class="skill-item">Python</div>
+                        <div class="skill-item">Java</div>
+                        <div class="skill-item">C#</div>
+                        <div class="skill-item">HTML/CSS</div>
+                        <div class="skill-item">JavaScript</div>
+                        <div class="skill-item">SQL</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="portfolio-section">
+            <div class="container">
+                <h2>Portafolio</h2>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <div class="portfolio-image" style="background-image: url('/api/placeholder/300/200')"></div>
+                        <div class="portfolio-info">
+                            <h3>Proyecto 1</h3>
+                            <p>Descripción breve del proyecto y tecnologías utilizadas.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <div class="portfolio-image" style="background-image: url('/api/placeholder/300/200')"></div>
+                        <div class="portfolio-info">
+                            <h3>Proyecto 2</h3>
+                            <p>Descripción breve del proyecto y tecnologías utilizadas.</p>
+                        </div>
+                    </div>
+                    <!-- Agregar más proyectos aquí -->
+                </div>
+            </div>
+        </section>
+
+        <section id="resume" class="resume-section">
+            <div class="container">
+                <h2>Currículum</h2>
+                <div class="experience">
+                    <h3>Experiencia Laboral</h3>
+                    <div class="experience-item">
+                        <h4>Emtelco</h4>
+                        <p>Cargo: [Insertar cargo]</p>
+                        <p>Fecha: [Insertar fechas]</p>
+                        <ul>
+                            <li>Responsabilidad 1</li>
+                            <li>Responsabilidad 2</li>
+                            <li>Responsabilidad 3</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <h4>Almacontact</h4>
+                        <p>Cargo: [Insertar cargo]</p>
+                        <p>Fecha: [Insertar fechas]</p>
+                        <ul>
+                            <li>Responsabilidad 1</li>
+                            <li>Responsabilidad 2</li>
+                            <li>Responsabilidad 3</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="education">
+                    <h3>Educación y Formación</h3>
+                    <div class="education-item">
+                        <h4>Tecnología en Desarrollo de Software</h4>
+                        <p>Institución: ITM</p>
+                        <p>Fecha: [Insertar fecha de graduación]</p>
+                    </div>
+                    <div class="education-item">
+                        <h4>Institución Educativa Cristóbal Colón</h4>
+                        <p>Título: [Insertar título obtenido]</p>
+                        <p>Fecha: [Insertar fecha de graduación]</p>
+                    </div>
+                </div>
+                <div class="certifications">
+                    <h3>Certificaciones</h3>
+                    <ul>
+                        <li>Cisco Networking Academy</li>
+                        <li>Platzi [Insertar certificaciones específicas]</li>
+                    </ul>
+                </div>
+                <div class="languages">
+                    <h3>Idiomas</h3>
+                    <p>Inglés - Nivel de lectura, escritura y conversación</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2>Contacto</h2>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensaje</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Enviar mensaje</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Jhon Dayron Jaramillo Laurens. Todos los derechos reservados.</p>
+            <div class="social-icons">
+                <a href="#" target="_blank">LinkedIn</a>
+                <a href="#" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript para la funcionalidad
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navegación suave
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Formulario de contacto
+            const contactForm = document.querySelector('.contact-form');
+            contactForm.addEventListener('submit', function(e) {
+                e.
